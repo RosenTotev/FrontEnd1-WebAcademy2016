@@ -1,0 +1,132 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Are you ready? Final Exam!</title>
+		<link rel="stylesheet" type="text/css" href="FE1_H_5.css" />
+	</head>
+	<body>
+		<div id="main">			
+			<div id="menu">
+				<a href="#">Link 1</a>
+				<a href="#">Link 2</a>
+				<a href="#">Link 3</a>
+				<a href="#">Link 4</a>
+				<a href="#">Link 5</a>
+			</div> 	
+			<div id="nested">
+				<table id="Table_Control_Menu">
+					<caption>Table: Control menu</caption>
+					<tr>
+						<td align="center" id="first_cell">
+							<img src="http://www.tattoogen.com/tattoo/Shit%20Happens%20trial__/95.75/000000/Believe%20In%20Myself.jpg" class="border" width="500" alt="you can not see this picture" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button type="button" id="Collapse" value="collapse" onclick="resizing();">Collapse</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button type="button" id="Add_List_Item" onclick="addItem();">Add List Item</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button type="button" id="Chek_Form" onclick="check();">Check Form</button>
+						</td>
+					</tr>
+				</table>
+				<div id="form">	
+					<form method="get" target="_blank" action="http://Enevsoft.net/echo.php" name="form" id="My_Form" >
+						<fieldset>
+							<legend>My account</legend>
+							My name is: 
+							<input type="text" name="names" id="names" /><br />
+							My years is: 
+							<input type="number" id="years" min="1" max="200" step="1" name="years" value="18" />	<!-- на снимката е направено с <inpyt type="text">, мисля че моят начин е по-правилен -->
+							&nbsp;&nbsp&nbsp;&nbsp;&nbsp;My sex: 
+							<input type="radio" id="male" name="sex" value="1" />
+							<label for="male">Male</label>
+							<input type="radio" name="sex" id="female" value="2" />
+							<label for="female">Female</label>
+							&nbsp;&nbsp&nbsp;&nbsp;&nbsp;I speak: 
+							<input type="checkbox" id="bul" name="lang[]" value="bg" />
+							<label for="bul">Bulgrian</label>
+							<input type="checkbox" id="en" name="lang[]" value="en" />
+							<label for="en">English</label>
+							<label class="right">
+								I use 
+								<select name="hand">
+									<option value="left">Right hand</option>							
+									<option value="right">Left hand</option>							
+								</select>
+							</label>
+						</fieldset>
+					</form>
+				</div>
+				<div id="list" class="right">
+					Ordered list 				<!-- тук също има противоречие между заданието и показаното на картинката -unordered list не може да се номерира и да се подреди в обратен ред-->
+					<ol type="1" reversed="reversed" id="my_list"></ol>
+				</div>
+			</div>
+			<div id="footer">
+				<a href="http://enevsoft.net/" target="_blank">Yordan Enev</a>
+				<span class="right">
+					<a href="http://webacademy.bg/">WebAcademy</a>
+				</span>
+			</div>
+		</div>
+		<script>
+			var numberElementList = 1;
+			function addItem(){				
+				var item = prompt("Insert Item", "Insert new item");
+				var addNewRow = document.createElement('li');
+				addNewRow.id = 'item' + numberElementList;
+				addNewRow.innerHTML = 'item ' + numberElementList + ': ' + item;
+				document.getElementById('my_list').appendChild(addNewRow); 
+				numberElementList++;
+			}
+		</script>
+		<script>
+			function resizing(){
+				var curentValue = document.getElementById('Collapse').value;
+				if(curentValue == 'collapse')
+				{					
+					curentValue = 'Expand';
+					document.getElementById('Collapse').innerHTML = curentValue;
+					Collapse.value = 'expand';
+					document.getElementById('nested').style.width = '65%';
+				}				
+				else
+				{					
+					curentValue = 'Collapse';					
+					document.getElementById('Collapse').innerHTML = curentValue;
+					Collapse.value = 'collapse';
+					document.getElementById('nested').style.width = '95%';
+				}			
+			}
+		</script>
+		<script>
+			function check(){
+				var hasName = document.getElementById('names').value;
+				if(hasName != '')
+				{
+					document.getElementById('My_Form').submit();
+				}
+				else
+				{
+					if(!confirm ('"My name is: " is Empty !   Would you like to send data?'))
+					{
+						alert('Your sending is canceled')
+						//event.preventDefault();
+					}
+					else
+					{
+						document.getElementById('My_Form').submit();
+					}
+				}				
+			}
+		</script>		
+	</body>
+</html>
